@@ -1,0 +1,31 @@
+import bs4
+import requests
+
+from pip._internal.network.utils import raise_for_status
+
+getPage = requests.get("https://www.tori.fi/koko_suomi?q=Putteri&cg=0&w=3&xtatc=INT-166")
+#getPage = raise_for_status()
+
+menu = bs4.BeautifulSoup(getPage.text, "html.parser")
+foods = menu.select(".list_mode_thumb")
+
+
+the_one = "Putteri"
+flenght = len(the_one)
+available = False
+
+for food in foods:
+    for i in range(len(food.text)):
+        chunk = food.text[i:i+flenght].lower()
+        if chunk == the_one:
+            available = True
+
+BotAPI = "1875360167:AAHZ3lgvc9SI8am3-mtjB_sAPdleOAf-LF0"
+ResultText = "JebinKrebin"
+ChatID = "1589437132"
+
+if available == True:
+    requests.get("https://api.telegram.org/bot" + BotAPI + "/sendMessage?chat_id=" + ChatID + "&text={}".format(ResultText))
+    print("tester")
+else:
+    print("no new putters today")
