@@ -20,9 +20,9 @@ for food in foods:
         if chunk == the_one:
             available = True
 
-BotAPI = "1875360167:AAHZ3lgvc9SI8am3-mtjB_sAPdleOAf-LF0"
+BotAPI = "####redacteddddd####"
 ResultText = "JebinKrebin"
-ChatID = "1589437132"
+ChatID = "####REDACTO####"
 
 if available == True:
     requests.get("https://api.telegram.org/bot" + BotAPI + "/sendMessage?chat_id=" + ChatID + "&text={}".format(ResultText))
